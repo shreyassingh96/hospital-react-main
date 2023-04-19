@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
 import jwt from 'jwt-decode';
 
-import './Register.css';
+import './UI.css';
 
 export const SIGN_UP = gql`
   mutation (
@@ -40,8 +40,10 @@ const Register = () => {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div className='register-container'>
+    <div className='container'>
+
       <Jumbotron className='form'>
+      <h2>Register</h2>
         <Form onSubmit={(e) => {
           e.preventDefault();
           signUp({
@@ -115,9 +117,6 @@ const Register = () => {
     required
   />
 </Form.Group>
-
-
-
       <Button variant="primary" type="submit">Register</Button>
     </Form>
   </Jumbotron>
