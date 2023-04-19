@@ -6,56 +6,49 @@ import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
 import jwt from 'jwt-decode';
 
+import './Register.css';
 
 export const SIGN_UP = gql`
-mutation
-(
-  $email: String!,
-  $firstName: String!,
-  $lastName:String!,
-  $password:String!,
-  $userCategory:String!,
-  $phoneNumber:String!,
-  ) 
-      {
-            signUp
-          (
-            email: $email, firstName: $firstName, lastName: $lastName,
-          password: $password, userCategory: $userCategory, phoneNumber: $phoneNumber,
-          )
-          {
-            _id
-          }
-      }
+  mutation (
+    $email: String!,
+    $firstName: String!,
+    $lastName:String!,
+    $password:String!,
+    $userCategory:String!,
+    $phoneNumber:String!,
+  ) {
+    signUp(
+      email: $email, firstName: $firstName, lastName: $lastName,
+      password: $password, userCategory: $userCategory, phoneNumber: $phoneNumber,
+    ) {
+      _id
+    }
+  }
 `;
 
 const Register = () => {
-
   let email, password, firstName, lastName, phoneNumber;
   const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
-
   const history = useHistory();
-
   const [user, setUser] = useState("UserCategory");
-  //user category handler
 
   const handleRadioChange = (event) => {
     setUser(event.target.value);
-  }
+  };
 
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div>
-
+    <div className='register-container'>
       <Jumbotron className='form'>
-        <Form onSubmit={e => {
+        <Form onSubmit={(e) => {
+          e.preventDefault();
           signUp({
             variables: {
               email: email.value, password: password.value, firstName: firstName.value, lastName: lastName.value,
-              userCategory: user, phoneNumber: phoneNumber.value
-            }
+              userCategory: user, phoneNumber: phoneNumber.value,
+            },
           });
 
           localStorage.setItem('userCategory', user);
@@ -67,54 +60,69 @@ const Register = () => {
           lastName.value = '';
           phoneNumber.value = '';
 
-          if(user === 'patient'){
+          if (user === 'patient') {
             history.push(`/patient`);
-          }
-          else{
+          } else {
             history.push(`/nurse`);
           }
-        }} >
+        }}>
           <Form.Group>
-            <Form.Label> Email</Form.Label>
-            <Form.Control type="text" name="email" id="email" placeholder="Enter email" ref={node => { email = node; }} />
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" name="email" id="email" placeholder="Enter email" ref={node => { email = node; }} required/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Password</Form.Label>
-            <Form.Control type="text" name="password" id="password" placeholder="Enter password" ref={node => { password = node; }} />
+            <Form.Control type="password" name="password" id="password" placeholder="Enter password" ref={node => { password = node; }} required/>
           </Form.Group>
 
           <Form.Group>
-            <Form.Label> First Name</Form.Label>
-            <Form.Control type="text" name="firstName" id="firstName" placeholder="Enter first name" ref={node => { firstName = node; }} />
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type="text" name="firstName" id="firstName" placeholder="Enter first name" ref={node => { firstName = node; }} required/>
           </Form.Group>
 
           <Form.Group>
-            <Form.Label> Last Name</Form.Label>
-            <Form.Control type="text" name="lastName" id="lastName" placeholder="Enter last name" ref={node => { lastName = node; }} />
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type="text" name="lastName" id="lastName" placeholder="Enter last name" ref={node => { lastName = node; }} required/>
           </Form.Group>
 
           <Form.Group>
-            <Form.Label> User Category &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Form.Label>
-            <div onChange={handleRadioChange}>
-              <input type="radio" value="nurse" name="userCategory" /> Nurse
-              &nbsp;&nbsp;&nbsp;
-              <input type="radio" value="patient" name="userCategory" /> Patient
+            <Form.Label>User Category</Form.Label>
+            <div className="radio-group" onChange={handleRadioChange} required>
+              <div className="radio">
+                <input type="radio" value="nurse" name="userCategory" id="nurse" />
+                <label htmlFor="nurse">Nurse</label>
+              </div>
+              <div className="radio">
+                <input type="radio" value="patient" name="userCategory" id="patient" />
+                <label htmlFor="patient">Patient</label>
+              </div>
             </div>
           </Form.Group>
-
           <Form.Group>
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter phoneNumber" ref={node => { phoneNumber = node; }} />
-          </Form.Group>
+  <Form.Label>Phone Number</Form.Label>
+  <Form.Control 
+    type="tel" 
+    pattern="[0-9]{10}" 
+    maxLength="10"
+    name="phoneNumber" 
+    id="phoneNumber" 
+    placeholder="Enter phone number" 
+    onChange={(e) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    }}
+    ref={node => { phoneNumber = node; }} 
+    required
+  />
+</Form.Group>
 
-          <Button variant="primary" type="submit">
-            Save
-          </Button>
-        </Form>
-      </Jumbotron>
-    </div>
-  );
+
+
+      <Button variant="primary" type="submit">Register</Button>
+    </Form>
+  </Jumbotron>
+</div>
+);
 }
 
 export default withRouter(Register);
