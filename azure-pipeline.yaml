@@ -64,8 +64,7 @@ stages:
         npm install
         npm test
       displayName: 'Run Backend Tests'
-
-
+      
     - task: SonarCloudPrepare@1
       inputs:
         SonarCloud: 'final_project_sonarCloud'
