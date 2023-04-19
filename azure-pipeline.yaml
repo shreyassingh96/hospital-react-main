@@ -65,12 +65,6 @@ stages:
         npm test
       displayName: 'Run Backend Tests'
 
-    - task: Jacoco@0
-      inputs:
-        classLocation: '$(System.DefaultWorkingDirectory)/backend/target/classes'
-        sourceFiles: '$(System.DefaultWorkingDirectory)/backend/src/main/java'
-        jacocoReportPath: '$(Build.SourcesDirectory)/../jacoco.xml'
-      displayName: 'Generate Code Coverage Report'
 
     - task: SonarCloudPrepare@1
       inputs:
