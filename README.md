@@ -1,54 +1,44 @@
-#Health Management System
-#The Health Management System is a web application that allows nurses and patients to manage and track vital signs and medical conditions. It also provides a platform for communication between the two parties.
+# Health App
 
-#Table of Contents
-Installation
-Usage
-Features
-Technologies
+This is a web application for tracking health data and providing support for patients and nurses.
 
-#Installation
-To install and run this project locally, follow these steps:
+## Installation
 
-Clone this repository.
-Install the dependencies using npm install.
-Create a .env file in the root directory and add the following environment variables:
-makefile
-Copy code
-DATABASE_URI=<your_mongodb_uri>
-SECRET_KEY=<your_secret_key>
-Start the server using npm run start.
-#Open the application in your browser at http://localhost:3000.
-#Usage
-#To use this application, follow these steps:
+1. Clone the repository: `git clone https://github.com/yourusername/health-app.git`
+2. Install dependencies: `npm install`
 
-Register as either a nurse or a patient using the registration form.
-Log in with your registered email and password.
-If you're a nurse, you can enter vital signs for your patients, access their previous clinical data, send them motivational tips, and generate a list of possible medical conditions.
-If you're a patient, you can create and send emergency alerts, access fitness games to encourage exercise, enter daily health information, and use a symptom checklist.
-Features
-The Health Management System includes the following features:
+## Usage
 
-User registration and login
-Nurse dashboard with the ability to:
-Enter vital signs for patients
-Access patients' previous clinical data
-Send daily motivational tips
-Generate a list of possible medical conditions
-Patient dashboard with the ability to:
-Create and send emergency alerts
-Access fitness games to encourage exercise
-Enter daily health information
-Use a symptom checklist
-Technologies
-This project was built using the following technologies:
+1. Start the server: `npm start`
+2. Navigate to `http://localhost:3000` in your web browser
 
-Node.js
-Express
-GraphQL
-MongoDB
-React
-Material-UI
+## Features
 
-Created by: Shreyas Singh
-Strudent Id: 301239523
+### User registration/login
+
+This component allows users to register for an account or log in if they already have one. There are two roles in the app: `nurse` and `patient`.
+
+#### Nurse functionality
+
+If the user is a nurse, they have the following functionality:
+
+- Enter vital signs: body temperature, heart rate, blood pressure, or respiratory rate
+- Access information captured during a previous clinical visit
+- Send daily motivational tips to the patient
+- Generate a list of possible medical conditions and advise the patient to see a doctor if necessary
+
+#### Patient functionality
+
+If the user is a patient, they have the following functionality:
+
+- Create and send an emergency alert to first responders
+- Access fitness games designed to encourage patients to exercise at home
+- Enter daily information, such as pulse rate, blood pressure, weight, temperature, respiratory rate
+- Use a checklist of common signs and symptoms (COVID-19 for example), and submit the choices
+
+## Technologies Used
+
+- React.js
+- Node.js
+- GraphQL
+- MongoDB
