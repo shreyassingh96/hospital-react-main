@@ -4,7 +4,7 @@ This is a web application for tracking health data and providing support for pat
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/health-app.git`
+1. Clone the repository: `git clone https://github.com/shreyassingh96/health-react-main.git`
 2. Install dependencies: `npm install`
 
 ## Usage
@@ -42,3 +42,5 @@ If the user is a patient, they have the following functionality:
 - Node.js
 - GraphQL
 - MongoDB
+
+## Creadted by Shreyas Singh : 301239523
