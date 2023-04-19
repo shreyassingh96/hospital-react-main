@@ -1,32 +1,45 @@
-# azure-pipelines.yaml
+# Node.js with React and Express Build Pipeline
+
 trigger:
   branches:
     include:
-    - main
+      - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'Windows-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '12.x'
-  displayName: 'Install Node.js'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '16.x'
+    displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'Build the web app'
+  - script: |
+      cd react-client
+      npm install
+      npm run build
+    displayName: 'Install and Build Frontend'
 
-- script: |
-    npm test
-  displayName: 'Test the web app'
+  - script: |
+      npm install
+    displayName: 'Install Backend Dependencies'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    artifactName: 'webapp'
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    publishLocation: 'pipeline'
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+      exclude: |
+        node_modules/**
+        frontend/node_modules/**
+        frontend/build/**
+      verbose: true
+    displayName: 'Archive Code'
 
-# Define your deployment stages here
-# ...
+  - task: PublishBuildArtifacts@1
+    inputs:
+      artifactName: 'combined'
+      pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    displayName: 'Publish Combined Artifact'
