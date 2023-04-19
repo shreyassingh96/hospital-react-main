@@ -8,38 +8,82 @@ trigger:
 pool:
   name: Windows
 
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '16.x'
-    displayName: 'Install Node.js'
+stages:
+- stage: Build
+  jobs:
+  - job: Build_Job
+    displayName: 'Build Job'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '16.x'
+      displayName: 'Install Node.js'
 
-  - script: |
-      cd react-client
-      npm install
-      npm run build
-    displayName: 'Install and Build Frontend'
+    - script: |
+        cd react-client
+        npm install
+        npm run build
+      displayName: 'Install and Build Frontend'
 
-  - script: |
-      npm install
-    displayName: 'Install Backend Dependencies'
+    - script: |
+        npm install
+      displayName: 'Install Backend Dependencies'
 
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/'
-      includeRootFolder: false
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-      replaceExistingArchive: true
-      exclude: |
-        node_modules/**
-        frontend/node_modules/**
-        frontend/build/**
-      verbose: true
-    displayName: 'Archive Code'
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+        exclude: |
+          node_modules/**
+          frontend/node_modules/**
+          frontend/build/**
+        verbose: true
+      displayName: 'Archive Code'
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      artifactName: 'combined'
-      pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    displayName: 'Publish Combined Artifact'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        artifactName: 'combined'
+        pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      displayName: 'Publish Combined Artifact'
+
+- stage: Test
+  jobs:
+  - job: Test_Job
+    displayName: 'Test Job'
+    steps:
+    - script: |
+        cd react-client
+        npm install
+        npm test
+      displayName: 'Run Frontend Tests'
+
+    - script: |
+        npm install
+        npm test
+      displayName: 'Run Backend Tests'
+
+    - task: Jacoco@0
+      inputs:
+        classLocation: '$(System.DefaultWorkingDirectory)/backend/target/classes'
+        sourceFiles: '$(System.DefaultWorkingDirectory)/backend/src/main/java'
+        jacocoReportPath: '$(Build.SourcesDirectory)/../jacoco.xml'
+      displayName: 'Generate Code Coverage Report'
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'shreyassingh96'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'shreyassingh96_hospital-react-main'
+        cliProjectName: 'hospital-react-main'
+        cliSources: '$(System.DefaultWorkingDirectory)/backend/src'
+      displayName: 'Prepare SonarCloud Analysis'
+
+    - script: |
+        cd backend
+        mvn sonar:sonar
+      displayName: 'Run SonarCloud Analysis'
