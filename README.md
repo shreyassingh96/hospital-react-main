@@ -1,14 +1,13 @@
-Health Management System
-The Health Management System is a web application that allows nurses and patients to manage and track vital signs and medical conditions. It also provides a platform for communication between the two parties.
+#Health Management System
+#The Health Management System is a web application that allows nurses and patients to manage and track vital signs and medical conditions. It also provides a platform for communication between the two parties.
 
-Table of Contents
+#Table of Contents
 Installation
 Usage
 Features
 Technologies
-Contributing
-License
-Installation
+
+#Installation
 To install and run this project locally, follow these steps:
 
 Clone this repository.
@@ -19,9 +18,9 @@ Copy code
 DATABASE_URI=<your_mongodb_uri>
 SECRET_KEY=<your_secret_key>
 Start the server using npm run start.
-Open the application in your browser at http://localhost:3000.
-Usage
-To use this application, follow these steps:
+#Open the application in your browser at http://localhost:3000.
+#Usage
+#To use this application, follow these steps:
 
 Register as either a nurse or a patient using the registration form.
 Log in with your registered email and password.
