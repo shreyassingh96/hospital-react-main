@@ -68,7 +68,7 @@ stages:
 
     - task: SonarCloudPrepare@1
       inputs:
-        SonarCloud: 'SonarCloud'
+        SonarCloud: 'final_project_sonarCloud'
         organization: 'shreyassingh96'
         scannerMode: 'CLI'
         configMode: 'manual'
