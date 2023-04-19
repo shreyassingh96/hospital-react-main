@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle, faGamepad, faLightbulb, faVideoCamera, faPlusSquare, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 

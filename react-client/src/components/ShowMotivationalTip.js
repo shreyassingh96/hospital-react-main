@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Table } from 'antd';
 
 

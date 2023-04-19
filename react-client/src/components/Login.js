@@ -3,8 +3,9 @@ import { useMutation, gql } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './UserLogin.css';
+import './UI.css';
 import jwt from 'jwt-decode';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 const LOGIN = gql`
   mutation authenticate($email: String!, $password: String!) {
@@ -50,7 +51,8 @@ const UserLogin = () => {
   }
 
   return (
-    <div className="login-container">
+    <div className="container">
+      <Jumbotron className='form'>
       <h2>Log in</h2>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Group controlId="formEmail">
@@ -80,11 +82,13 @@ const UserLogin = () => {
             Please provide a valid password.
           </Form.Control.Feedback>
         </Form.Group>
-
+        <div className='btn-primary:hover'>
         <Button variant="primary" type="submit">
           Log in
         </Button>
+        </div>
       </Form>
+      </Jumbotron>
     </div>
   );
 };

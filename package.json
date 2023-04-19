@@ -26,6 +26,7 @@
     "graphql-date": "^1.0.3",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^2.3.10",
+    "mongodb": "4.1",
     "mongoose": "^5.8.9",
     "morgan": "^1.9.1",
     "react-player": "^2.11.0",

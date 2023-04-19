@@ -7,6 +7,7 @@ import {
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './App.css';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 //
 
 import Home from './components/Home';

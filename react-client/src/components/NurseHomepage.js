@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLightbulb, faPlusSquare, faExclamationTriangle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,6 +9,9 @@ function Nurse(props) {
 
   const name = localStorage.getItem('name');
   return (
+    <div className='container'>
+
+      <Jumbotron className='form'>
     <div className='nursePage'>
       <center><h2> Hello, {name}!</h2></center>
 
@@ -31,6 +35,8 @@ function Nurse(props) {
 
       </ListGroup>
 
+    </div>
+    </Jumbotron>
     </div>
   );
 

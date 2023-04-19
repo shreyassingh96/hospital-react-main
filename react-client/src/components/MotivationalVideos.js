@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 function Home(props) {
   const history = useHistory();

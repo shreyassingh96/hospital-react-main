@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Table } from 'antd';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
