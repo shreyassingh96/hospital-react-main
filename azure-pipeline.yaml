@@ -1,0 +1,32 @@
+# azure-pipelines.yaml
+trigger:
+  branches:
+    include:
+    - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Build the web app'
+
+- script: |
+    npm test
+  displayName: 'Test the web app'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    artifactName: 'webapp'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    publishLocation: 'pipeline'
+
+# Define your deployment stages here
+# ...
