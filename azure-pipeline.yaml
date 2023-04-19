@@ -6,7 +6,7 @@ trigger:
       - master
 
 pool:
-  name: Azure Pipelines
+  name: Windows
 
 steps:
   - task: NodeTool@0
