@@ -10,8 +10,31 @@ module.exports = function () {
 		useNewUrlParser: true, useCreateIndex: true 
 		}).then(() => console.log('DB Connected!'))
 		.catch(err => {
-		console.log('Error');
+		console.log('Error'+err.message);
 		});
+
+    // const db = mongoose.connect(config.db, {
+    //   useUnifiedTopology: true,
+    //   useNewUrlParser: true,
+    //   useCreateIndex: true
+    // }).then(() => {
+    //   console.log('DB Connected!');
+    // }).catch(err => {
+    //   console.log('Error: ' + err.message);
+    // });
+
+//     const mongoose = require('mongoose');
+
+//     const db = mongoose.connect(config.db, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// }).then(() => {
+//   console.log('Database connection successful');
+// }).catch(err => {
+//   console.error('Database connection error: ' + err.message);
+// });
+
+    
 
     require('../app/models/UserModel');
     require('../app/models/VitalSignModel');

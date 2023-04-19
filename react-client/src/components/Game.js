@@ -1,6 +1,7 @@
 import Layout from './Layout';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import { useHistory } from 'react-router-dom';
 
 const styles = {

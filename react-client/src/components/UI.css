@@ -1,8 +1,8 @@
-.login-container {
+.container {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 4px;
   }
   
@@ -17,7 +17,12 @@
   }
   
   .btn-primary:hover {
-    background-color: #0069d9;
+    background-color: #09121b;
     border-color: #0062cc;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
   }
   

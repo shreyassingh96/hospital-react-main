@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from './Box'
-
+import Jumbotron from 'react-bootstrap/Jumbotron';
 const style = {
   border: '4px solid lightblue',
   borderRadius: '10px',

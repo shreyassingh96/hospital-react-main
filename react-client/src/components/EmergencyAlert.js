@@ -38,7 +38,7 @@ function EmergencyAlert() {
         </div>
     };
     return (
-        <div>
+        <div className='container'>
             <Jumbotron className='form'>
                 <Form onSubmit={e => {
                     createEmergencyAlert({

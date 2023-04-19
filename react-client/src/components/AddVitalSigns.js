@@ -4,6 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
+import './UI.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTemperature1, faHeartbeat, faDroplet, faSnowflake, faMale } from '@fortawesome/free-solid-svg-icons';
@@ -45,7 +46,7 @@ const AddVitalSigns = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <br /><br /><center><h5> Vital Signs Form</h5></center>
 
       <Jumbotron className='form'>
@@ -67,38 +68,43 @@ const AddVitalSigns = () => {
         }} >
 
           <Form.Group>
-            <Form.Label> Body Temperature <FontAwesomeIcon icon={faTemperature1} size={'1x'} /></Form.Label>
+            <Form.Label> Body Temperature </Form.Label>
             <Form.Control type="text" name="bodyTemperature" id="bodyTemperature" placeholder="Enter body temperature" ref={node => { bodyTemperature = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Heart Rate <FontAwesomeIcon icon={faHeartbeat} size={'1x'} /></Form.Label>
+            <Form.Label>Heart Rate <FontAwesomeIcon size={'1x'} /></Form.Label>
             <Form.Control type="text" name="heartRate" id="heartRate" placeholder="Enter heart rate" ref={node => { heartRate = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Blood Pressure <FontAwesomeIcon icon={faDroplet} size={'1x'} /></Form.Label>
+            <Form.Label>Blood Pressure <FontAwesomeIcon size={'1x'} /></Form.Label>
             <Form.Control type="text" name="bloodPressure" id="bloodPressure" placeholder="Enter blood pressure" ref={node => { bloodPressure = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Respiratory Rate <FontAwesomeIcon icon={faSnowflake} size={'1x'} /></Form.Label>
+            <Form.Label>Respiratory Rate <FontAwesomeIcon size={'1x'} /></Form.Label>
             <Form.Control type="text" name="respiratoryRate" id="respiratoryRate" placeholder="Enter respiratory rate" ref={node => { respiratoryRate = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Weight <FontAwesomeIcon icon={faMale} size={'1x'} /></Form.Label>
+            <Form.Label>Weight <FontAwesomeIcon size={'1x'} /></Form.Label>
             <Form.Control type="text" name="weight" id="weight" placeholder="Enter weight" ref={node => { weight = node; }} />
           </Form.Group>
 
-          <div className='button'>
-            <Button className='buttonSave' variant="primary" type="submit">
-              Save
-            </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='buttonCancel' variant="danger" type="submit" onClick={onCancel}>
-              Cancel
-            </Button>
+          <div className='button-container' style={{textAlign: 'center'}}>
+            <div className='button'>
+              <Button className='buttonSave' variant="primary" type="submit">
+                Save
+              </Button>
+            </div>
+            <div className='button'>
+              <Button className='buttonCancel' variant="danger" type="submit" onClick={onCancel}>
+                Cancel
+              </Button>
+            </div>
           </div>
+
         </Form>
       </Jumbotron>
     </div>
