@@ -1,4 +1,11 @@
-body {
+/*
+ * This CSS code sets some basic styling rules for the body element and the code element.
+ * The body element has a margin of 0, a font family that includes a range of common system fonts,
+ * and some properties that smooth the fonts for better readability on screen.
+ * The code element has a specific font family that is commonly used for code snippets and blocks.
+ */
+
+ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

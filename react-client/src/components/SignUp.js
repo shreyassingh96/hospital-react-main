@@ -1,3 +1,4 @@
+// Import necessary dependencies
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
@@ -5,9 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
 import jwt from 'jwt-decode';
-
 import './UI.css';
 
+// Define GraphQL mutation
 export const SIGN_UP = gql`
   mutation (
     $email: String!,
@@ -26,24 +27,26 @@ export const SIGN_UP = gql`
   }
 `;
 
+// Define Register component
 const Register = () => {
+  // Declare state variables and refs for form inputs
   let email, password, firstName, lastName, phoneNumber;
   const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
   const history = useHistory();
   const [user, setUser] = useState("UserCategory");
 
+  // Handle change in user category radio button
   const handleRadioChange = (event) => {
     setUser(event.target.value);
   };
 
+  // Render form and handle submission
   if (loading) return 'Submitting...';
   if (error) return `Submission error! ${error.message}`;
-
   return (
     <div className='container'>
-
       <Jumbotron className='form'>
-      <h2>Register</h2>
+        <h2>Register</h2>
         <Form onSubmit={(e) => {
           e.preventDefault();
           signUp({
@@ -53,15 +56,18 @@ const Register = () => {
             },
           });
 
+          // Set user category and name in local storage
           localStorage.setItem('userCategory', user);
           localStorage.setItem('name', firstName.value);
 
+          // Clear form inputs
           email.value = '';
           password.value = '';
           firstName.value = '';
           lastName.value = '';
           phoneNumber.value = '';
 
+          // Redirect to appropriate page based on user category
           if (user === 'patient') {
             history.push(`/patient`);
           } else {
@@ -87,7 +93,7 @@ const Register = () => {
             <Form.Label>Last Name</Form.Label>
             <Form.Control type="text" name="lastName" id="lastName" placeholder="Enter last name" ref={node => { lastName = node; }} required/>
           </Form.Group>
-
+          
           <Form.Group>
             <Form.Label>User Category</Form.Label>
             <div className="radio-group" onChange={handleRadioChange} required>

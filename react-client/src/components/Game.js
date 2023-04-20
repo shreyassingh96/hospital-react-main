@@ -1,9 +1,11 @@
+// import necessary modules and components
 import Layout from './Layout';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import { useHistory } from 'react-router-dom';
 
+// inline styles
 const styles = {
   width: '200px',
   margin: '20px auto',
@@ -12,25 +14,36 @@ const pStyle = {
   color: 'green'
 }
 
+// main function component
 function Game() {
+  // state variables
   const [layout, setLayout] = useState(Array(9).fill(null));
   const [xIsNext, setXisNext] = useState(true);
   const winner = checkWinner(layout)
 
+  // function to handle clicks on boxes
   const handleClick = (i) => {
+    // make a copy of the layout state array
     const layoutState = [...layout];
+    // check if there's already a winner or if the box is already clicked
     if (winner || layoutState[i]) return;
+    // mark the box as X or O depending on the turn
     layoutState[i] = xIsNext ? 'X' : 'O';
+    // update the state variables
     setLayout(layoutState);
     setXisNext(!xIsNext);
   }
 
+  // get the history object
   const history = useHistory();
+  // function to handle clicks on the Back button
   const onBack = e => {
     e.preventDefault();
+    // go back to the patient page
     history.push('/patient');
   }
 
+  // JSX code for the Game component
   return (
     <React.Fragment>
       <Layout boxes={layout} onClick={handleClick} />
@@ -50,6 +63,8 @@ function Game() {
     </React.Fragment>
   )
 }
+
+// function to check if there's a winner
 export function checkWinner(boxes) {
   const lines = [
     [0, 1, 2],
@@ -69,6 +84,8 @@ export function checkWinner(boxes) {
   }
   return null;
 }
+
+// example boxes for testing
 const boxes = [null, null, null, "X", "X", "O", null, null, null];
 
 export default Game;

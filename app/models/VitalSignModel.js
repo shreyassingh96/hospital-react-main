@@ -1,7 +1,8 @@
-﻿const mongoose = require('mongoose');
+﻿// Importing required packages
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
+// Defining the VitalSign schema
 const VitalSignSchema = new Schema({
   bodyTemperature: {
     type: String,
@@ -19,15 +20,13 @@ const VitalSignSchema = new Schema({
   weight: {
     type: String
   },
-  patient:
-  {
+  patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  },
-  {
-    timestamps: true,
-  }
-);
+}, {
+  timestamps: true, // Adding createdAt and updatedAt timestamps
+});
 
+// Exporting the VitalSign model
 module.exports = mongoose.model('VitalSign', VitalSignSchema);

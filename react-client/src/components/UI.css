@@ -1,28 +1,42 @@
+/* // This is the CSS code for a container that holds a form and buttons
+// The container has a maximum width of 500 pixels and is centered on the page
+// It has a padding of 20 pixels and a border radius of 4 pixels */
+
 .container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    /* border: 1px solid #ccc; */
-    border-radius: 4px;
-  }
-  
-  .form-control:focus {
-    box-shadow: none;
-    border-color: #007bff;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #09121b;
-    border-color: #0062cc;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* // This code defines the style for a form input when it is focused
+// It removes the box-shadow and changes the border color to #007bff */
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #007bff;
+}
+
+/* // This code defines the style for a primary button
+// It sets the background color and border color to #007bff */
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* // This code defines the style for a primary button when it is hovered over
+// It sets the background color to #09121b and the border color to #0062cc */
+
+.btn-primary:hover {
+  background-color: #09121b;
+  border-color: #0062cc;
+}
+
+/* // This code defines the style for a container that holds multiple buttons
+// The buttons are evenly spaced across the container */
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}

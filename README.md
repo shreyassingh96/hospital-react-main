@@ -9,8 +9,8 @@ This is a web application for tracking health data and providing support for pat
 
 ## Usage
 
-1. Start the server: `npm start`
-2. Navigate to `http://localhost:3000` in your web browser
+1. Start the server: `nodemon`
+2. Navigate to `http://localhost:5000` in your web browser
 
 ## Features
 
