@@ -10,9 +10,8 @@ function Home(props) {
     return (
         <div className="container">
             <Jumbotron>
-            <h2> Express - React with CRUD Operations</h2>
-            <p>React front-end calls Express REST API to add,
-                list, update, or delete a user, create an article, etc.</p>
+            <h2> CRUD Operations in Express - React </h2>
+            <p>Developed by group 2</p>
                 </Jumbotron>
         </div>
     );

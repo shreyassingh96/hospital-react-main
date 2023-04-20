@@ -33,47 +33,42 @@ function App() {
 
   const userCategory = localStorage.getItem('userCategory');
   return (
-    <Router>
-      <Navbar className='navbar navbar-dark bg-dark' >
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/home" >Home</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/signUp">Sign Up</Nav.Link>
-            <Nav.Link href="/logout">Logout</Nav.Link>
+<Router>
+  <Navbar className='navbar navbar-dark bg-dark' >
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto">
+        <Nav.Link href="/home" >Home</Nav.Link>
+        <Nav.Link href="/login">Login</Nav.Link>
+        <Nav.Link href="/signUp">Sign Up</Nav.Link>
+        <Nav.Link href="/logout">Logout</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 
+  <div>
+    <Route render ={()=> < Home />} path="/" exact />
+    <Route render ={()=> < Home />} path="/home" />
+    <Route render ={()=> < Login />} path="/login" />
+    <Route render ={()=> < SignUp />} path="/signUp" />
+    <Route render ={()=> < NurseHomepage />} path="/nurse" />
+    <Route render ={()=> < PatientHomepage />} path="/patient" />
 
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    
-      <div>          
-          <Route render ={()=> < Home />} path="/home" />
-          <Route render ={()=> < Login />} path="/login" />
-          <Route render ={()=> < SignUp />} path="/signUp" />
-          <Route render ={()=> < NurseHomepage />} path="/nurse" />
-          <Route render ={()=> < PatientHomepage />} path="/patient" />
+    <Route render ={()=> userCategory === 'patient' && < AddVitalSigns />} path="/addVitalSigns" />
+    <Route render ={()=> userCategory === 'patient' && < Checklist />} path="/checklist" />
+    <Route render ={()=> userCategory === 'patient' && < EmergencyAlert />} path="/emergencyAlert" />
+    <Route render ={()=> userCategory === 'patient' && < MotivationalVideos />} path="/motivationalVideos" />
+    <Route render ={()=> userCategory === 'patient' && < Game />} path="/game" />
 
-          <Route render ={()=> userCategory === 'patient' && < AddVitalSigns />} path="/addVitalSigns" />
-          <Route render ={()=> userCategory === 'patient' && < Checklist />} path="/checklist" />
-          <Route render ={()=> userCategory === 'patient' && < EmergencyAlert />} path="/emergencyAlert" />
-          <Route render ={()=> userCategory === 'patient' && < MotivationalVideos />} path="/motivationalVideos" />
-          <Route render ={()=> userCategory === 'patient' && < Game />} path="/game" />
-
-          <Route render ={()=> userCategory === 'nurse' && < CreateMotivationalTip />} path="/createTip" />
-         < Route render ={()=> userCategory === 'nurse' && < ShowMotivationalTip />} path="/showTip" />
-          <Route render ={()=> userCategory === 'nurse' && < PatientInfo />} path="/patientInfo" />
-          <Route render ={()=> userCategory === 'nurse' && < AddVitalSignsByNurse />} path="/vitals" />
-          <Route render ={()=> userCategory === 'nurse' && < ShowEmergencyAlert />} path="/alert" />
-          <Route render ={()=> < Results />} path="/run" />
-          <Route render ={()=> < Logout />} path="/logout" />
-
-      </div>
-
-    </Router>
-
-
+    <Route render ={()=> userCategory === 'nurse' && < CreateMotivationalTip />} path="/createTip" />
+    <Route render ={()=> userCategory === 'nurse' && < ShowMotivationalTip />} path="/showTip" />
+    <Route render ={()=> userCategory === 'nurse' && < PatientInfo />} path="/patientInfo" />
+    <Route render ={()=> userCategory === 'nurse' && < AddVitalSignsByNurse />} path="/vitals" />
+    <Route render ={()=> userCategory === 'nurse' && < ShowEmergencyAlert />} path="/alert" />
+    <Route render ={()=> < Results />} path="/run" />
+    <Route render ={()=> < Logout />} path="/logout" />
+  </div>
+</Router>
   );
 }
 //<Route render ={()=> < App />} path="/" />

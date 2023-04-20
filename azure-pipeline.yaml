@@ -76,7 +76,5 @@ stages:
         cliSources: '$(System.DefaultWorkingDirectory)/backend/src'
       displayName: 'Prepare SonarCloud Analysis'
 
-    - script: |
-        cd backend
-        mvn sonar:sonar
+    - task: SonarCloudAnalyze@1
       displayName: 'Run SonarCloud Analysis'
