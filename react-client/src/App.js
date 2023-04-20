@@ -23,6 +23,7 @@ import AddVitalSignsByNurse from './components/AddVitalSignsByNurse';
 import ShowEmergencyAlert from './components/ShowEmergencyAlert';
 import Results from './components/Results';
 import Logout from './components/Logout';
+// import Navbar from './components/Navbar';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <Navbar/>
 
       <div>
         {/* Route to Home component */}
