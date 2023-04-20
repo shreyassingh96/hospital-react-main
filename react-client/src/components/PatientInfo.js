@@ -1,8 +1,10 @@
+// Import necessary modules
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Table } from 'antd';
 
+// Define GraphQL query to fetch vital signs data
 const GET_VITAL_SIGNS = gql`
   {
     vitalSigns{
@@ -15,15 +17,14 @@ const GET_VITAL_SIGNS = gql`
       patient,
     }
   }
-  `;
+`;
 
+// Define functional component to display vital signs information
 const ShowVitalSigns = () => {
-  useEffect(() => {
-    refetch();
-  }, []);
-
+  // Fetch data from server using useQuery hook
   const { loading, error, data, refetch } = useQuery(GET_VITAL_SIGNS);
 
+  // Define columns for Ant Design table
   const columns = [
     {
       title: 'Body Temperature',
@@ -51,22 +52,27 @@ const ShowVitalSigns = () => {
       key: "weight"
     }
   ]
-  console.log(data);
+
+  // Call refetch function on component mount
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  // Display loading message if data is being fetched from server
   if (loading) return <p>Loading...</p>;
+
+  // Display error message if there is an error while fetching data
   if (error) return <p>Error :</p>;
 
-
+  // Render table to display vital signs information
   return (
     <div>
       <br /><br />
       <center><h4>{data.vitalSigns.patient} Patient Vital Signs Information List</h4></center><br /><br />
       <Table className='tip' columns={columns} dataSource={data.vitalSigns} pagination={false} />
-
     </div>
-
-
   );
-
 }
 
+// Export component for use in other modules
 export default ShowVitalSigns;

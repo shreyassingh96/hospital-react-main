@@ -1,12 +1,14 @@
+// Import required packages and modules
 var GraphQLObjectType = require("graphql").GraphQLObjectType;
 var GraphQLList = require("graphql").GraphQLList;
 var GraphQLNonNull = require("graphql").GraphQLNonNull;
 var GraphQLString = require("graphql").GraphQLString;
 const mongoose = require("mongoose");
 
+// Import the VitalSignModel module
 var VitalSignModel = require("../models/VitalSignModel");
 
-
+// Define the GraphQL object type for vitalSigns
 const vitalSignType = new GraphQLObjectType({
     name: 'vitalSign',
     fields: function() {
@@ -36,10 +38,12 @@ const vitalSignType = new GraphQLObjectType({
     }
 });
 
+// Define the GraphQL query type
 const queryType = {
     vitalSigns: {
         type: new GraphQLList(vitalSignType),
         resolve: function () {
+            // Find all vitalSigns in the database and return them
             const vitalSigns = VitalSignModel.find().exec();
             if(!vitalSigns) {
                 throw new Error("vitalSigns not found");
@@ -56,6 +60,7 @@ const queryType = {
             },
         },
         resolve: function (root, params) {
+            // Find the vitalSigns for a particular patient and return them
             const vitalSign = VitalSignModel.find({patient : params.patient}).exec();
             console.log(vitalSign)
             if(!vitalSign) {
@@ -66,7 +71,7 @@ const queryType = {
     }
 };
 
-
+// Define the GraphQL mutation type
 const Mutation = {
     createVitalSign: {
         type: vitalSignType,
@@ -91,6 +96,7 @@ const Mutation = {
             },
         },
         resolve: function (root, params) {
+            // Create a new vitalSign entry in the database and return it
             const vitalSignModel = new VitalSignModel(params);
 
             const newVitalSign = vitalSignModel.save();
@@ -102,6 +108,7 @@ const Mutation = {
     }
 };
 
+// Export the query and mutation types
 module.exports = {
     vitalSignQuery: queryType,
     vitalSignMutation: Mutation,

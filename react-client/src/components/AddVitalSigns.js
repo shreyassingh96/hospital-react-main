@@ -6,77 +6,92 @@ import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
 import './UI.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperature1, faHeartbeat, faDroplet, faSnowflake, faMale } from '@fortawesome/free-solid-svg-icons';
 
+// Define GraphQL mutation for creating vital signs
 export const Create_Vital_Sign = gql`
-mutation
-(
-  $bodyTemperature: String!,
-  $heartRate: String!,
-  $bloodPressure:String!,
-  $respiratoryRate:String!,
-  $weight:String!,
-  ) 
-        {
-            createVitalSign
-        (
-            bodyTemperature: $bodyTemperature, heartRate: $heartRate, bloodPressure: $bloodPressure,
-            respiratoryRate: $respiratoryRate, weight: $weight,
-          )
-          {
-            _id
-        }
-      }
+  mutation CreateVitalSign(
+    $bodyTemperature: String!,
+    $heartRate: String!,
+    $bloodPressure:String!,
+    $respiratoryRate:String!,
+    $weight:String!,
+  ) {
+    createVitalSign(
+      bodyTemperature: $bodyTemperature,
+      heartRate: $heartRate,
+      bloodPressure: $bloodPressure,
+      respiratoryRate: $respiratoryRate,
+      weight: $weight,
+    ) {
+      _id
+    }
+  }
 `;
 
 const AddVitalSigns = () => {
-  //body temperature, heart rate, blood pressure, or respiratory rate.
-
+  // Initialize variables for vital signs
   let bodyTemperature, heartRate, bloodPressure, respiratoryRate, weight;
+  // Initialize history object
   const history = useHistory();
+  // Use useMutation hook to define createVitalSign function and get data, loading, and error states
   const [createVitalSign, { data, loading, error }] = useMutation(Create_Vital_Sign);
 
+  // If mutation is loading, display "Submitting..."
   if (loading) return 'Submitting...';
+  // If there is an error, display error message
   if (error) return `Submission error! ${error.message}`;
 
+  // Function to handle cancel button click
   const onCancel = e => {
     e.preventDefault();
+    // Redirect to patient page
     history.push('/patient');
-  }
+  };
 
   return (
     <div className='container'>
-      <br /><br /><center><h5> Vital Signs Form</h5></center>
+      <br />
+      <br />
+      <center>
+        <h5>Vital Signs Form</h5>
+      </center>
 
       <Jumbotron className='form'>
-        <Form onSubmit={e => {
-          createVitalSign({
-            variables: {
-              bodyTemperature: bodyTemperature.value, heartRate: heartRate.value, bloodPressure: bloodPressure.value, respiratoryRate: respiratoryRate.value,
-              weight: weight.value
-            }
-          });
-
-          bodyTemperature.value = '';
-          heartRate.value = '';
-          bloodPressure.value = '';
-          respiratoryRate.value = '';
-          weight.value = '';
-
-          history.push('/patient');
-        }} >
-
+        <Form
+          onSubmit={e => {
+            e.preventDefault();
+            // Call createVitalSign function with variables for each vital sign
+            createVitalSign({
+              variables: {
+                bodyTemperature: bodyTemperature.value,
+                heartRate: heartRate.value,
+                bloodPressure: bloodPressure.value,
+                respiratoryRate: respiratoryRate.value,
+                weight: weight.value,
+              }
+            });
+            // Clear form fields
+            bodyTemperature.value = '';
+            heartRate.value = '';
+            bloodPressure.value = '';
+            respiratoryRate.value = '';
+            weight.value = '';
+            // Redirect to patient page
+            history.push('/patient');
+          }}
+        >
           <Form.Group>
-            <Form.Label> Body Temperature </Form.Label>
+            <Form.Label>Body Temperature</Form.Label>
             <Form.Control type="text" name="bodyTemperature" id="bodyTemperature" placeholder="Enter body temperature" ref={node => { bodyTemperature = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Heart Rate <FontAwesomeIcon size={'1x'} /></Form.Label>
+            <Form.Label>Heart Rate <FontAwesomeIcon size={'1x'} icon={faHeartbeat} /></Form.Label>
             <Form.Control type="text" name="heartRate" id="heartRate" placeholder="Enter heart rate" ref={node => { heartRate = node; }} />
           </Form.Group>
-
+          
           <Form.Group>
             <Form.Label>Blood Pressure <FontAwesomeIcon size={'1x'} /></Form.Label>
             <Form.Control type="text" name="bloodPressure" id="bloodPressure" placeholder="Enter blood pressure" ref={node => { bloodPressure = node; }} />

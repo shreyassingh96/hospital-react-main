@@ -1,9 +1,10 @@
+// Import necessary modules
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import { Table } from 'antd';
 
-
+// Define GraphQL query
 const GET_Tip = gql`
   {
     MotivationalTips{
@@ -11,17 +12,19 @@ const GET_Tip = gql`
       message,
     }
   }
-  `;
+`;
 
+// Define component to list motivational tips
 const ListTip = () => {
+  // Fetch data using useQuery hook
+  const { loading, error, data, refetch } = useQuery(GET_Tip);
 
+  // Call refetch function to update data
   useEffect(() => {
     refetch();
   }, []);
 
-  const { loading, error, data, refetch } = useQuery(GET_Tip);
-
-
+  // Define table columns for displaying data
   const columns = [
     {
       dataIndex: "message",
@@ -29,20 +32,20 @@ const ListTip = () => {
     }
   ]
 
-
-  console.log(data);
+  // Display data or error message
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :</p>;
 
-
+  // Render component
   return (
     <div>
       <br /><br /><br /><center><h2>Tip of the day!</h2></center><br />
       <div className='nursePage'>
-
         <h1> <Table className='tip' columns={columns} dataSource={data.MotivationalTips} pagination={false} /></h1>
-      </div></div>
+      </div>
+    </div>
   );
 }
 
+// Export component
 export default ListTip;
