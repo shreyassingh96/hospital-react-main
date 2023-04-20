@@ -7,7 +7,7 @@ import { withRouter, useHistory } from 'react-router-dom';
 import './UI.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTemperature1, faHeartbeat, faDroplet, faSnowflake, faMale } from '@fortawesome/free-solid-svg-icons';
+import { faTemperature1, faHeartbeat, faDroplet, faSnowflake, faMale, faThermometer, faTemperatureThreeQuarters, faHeart, faWeightScale } from '@fortawesome/free-solid-svg-icons';
 
 // Define GraphQL mutation for creating vital signs
 export const Create_Vital_Sign = gql`
@@ -58,7 +58,7 @@ const AddVitalSigns = () => {
         <h5>Vital Signs Form</h5>
       </center>
 
-      <Jumbotron className='form'>
+      <Jumbotron className='patientForm'>
         <Form
           onSubmit={e => {
             e.preventDefault();
@@ -83,28 +83,28 @@ const AddVitalSigns = () => {
           }}
         >
           <Form.Group>
-            <Form.Label>Body Temperature</Form.Label>
-            <Form.Control type="text" name="bodyTemperature" id="bodyTemperature" placeholder="Enter body temperature" ref={node => { bodyTemperature = node; }} />
+            <Form.Label>Body Temperature <FontAwesomeIcon size={'1x'} icon={faTemperatureThreeQuarters} /></Form.Label>
+            <Form.Control type="text" name="bodyTemperature" id="bodyTemperature" placeholder="Body temperature (C or F) " ref={node => { bodyTemperature = node; }} />
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Heart Rate <FontAwesomeIcon size={'1x'} icon={faHeartbeat} /></Form.Label>
-            <Form.Control type="text" name="heartRate" id="heartRate" placeholder="Enter heart rate" ref={node => { heartRate = node; }} />
+            <Form.Control type="text" name="heartRate" id="heartRate" placeholder="Heart rate (BPM)" ref={node => { heartRate = node; }} />
           </Form.Group>
           
           <Form.Group>
-            <Form.Label>Blood Pressure <FontAwesomeIcon size={'1x'} /></Form.Label>
-            <Form.Control type="text" name="bloodPressure" id="bloodPressure" placeholder="Enter blood pressure" ref={node => { bloodPressure = node; }} />
+            <Form.Label>Blood Pressure <FontAwesomeIcon size={'1x'} icon={faThermometer} /></Form.Label>
+            <Form.Control type="text" name="bloodPressure" id="bloodPressure" placeholder="Blood pressure (number/number)" ref={node => { bloodPressure = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Respiratory Rate <FontAwesomeIcon size={'1x'} /></Form.Label>
-            <Form.Control type="text" name="respiratoryRate" id="respiratoryRate" placeholder="Enter respiratory rate" ref={node => { respiratoryRate = node; }} />
+            <Form.Label>Respiratory Rate <FontAwesomeIcon size={'1x'} icon={faHeartbeat} /></Form.Label>
+            <Form.Control type="text" name="respiratoryRate" id="respiratoryRate" placeholder="Respiratory rate (number)" ref={node => { respiratoryRate = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Weight <FontAwesomeIcon size={'1x'} /></Form.Label>
-            <Form.Control type="text" name="weight" id="weight" placeholder="Enter weight" ref={node => { weight = node; }} />
+            <Form.Label>Weight <FontAwesomeIcon size={'1x'} icon={faWeightScale} /></Form.Label>
+            <Form.Control type="text" name="weight" id="weight" placeholder="Enter weight (lbs or kg)" ref={node => { weight = node; }} />
           </Form.Group>
 
           <div className='button-container' style={{textAlign: 'center'}}>

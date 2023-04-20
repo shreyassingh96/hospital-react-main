@@ -55,12 +55,7 @@ h1,h2,h3
     font-display: swap;
   }
 
-.patientPage{
-  padding-top: 50px;
-  padding-left: 350px;
-    padding-right: 350px;
-   
-}
+
 
 .nursePage{
   padding-top: 50px;
@@ -83,7 +78,7 @@ h1,h2,h3
     padding-right: 400px;
   align-items: center;
   font-weight: 500;
-  background-image: linear-gradient(to left, rgba(255,0,0,0), #bbe4f0);
+  background-image: linear-gradient(to left, rgba(80, 80, 80, 0), #00c3ff);
 
   font-size: large;
   }
@@ -117,3 +112,31 @@ h1,h2,h3
   color: white;
 }
 
+.patientListColor{
+  
+  font-family:'Times New Roman', Times, serif;
+  font-size: medium;
+  color: #00c3ff;
+}
+
+.patientForm{
+  padding-left: 500px;
+  padding-right: 500px;
+background: linear-gradient(to left, #ffffff, hsl(194, 55%, 56%));
+color:black;
+font-size: large;
+}
+
+.patientPage{
+  font-family:'Times New Roman', Times, serif;
+  font-size: medium;
+  color: #00c3ff;
+}
+
+h5{
+  align-items: center;
+  color: black;
+  font-size: xx-large;
+  font-family: Arial, Helvetica, sans-serif;
+  font-display: swap;
+}

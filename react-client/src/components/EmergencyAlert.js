@@ -34,7 +34,7 @@ function EmergencyAlert() {
   return (
     // Render a container div with a Jumbotron form
     <div className='container'>
-      <Jumbotron className='form'>
+      <Jumbotron className='patientForm'>
         <Form
           onSubmit={(e) => {
             // Call createEmergencyAlert mutation function with the entered alertMessage value

@@ -2,9 +2,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExclamationTriangle, faGamepad, faLightbulb, faVideoCamera, faPlusSquare, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faGamepad, faLightbulb, faPlusSquare, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Get the name of the patient from local storage
 const name = localStorage.getItem('name');
@@ -13,32 +12,28 @@ const name = localStorage.getItem('name');
 function Patient(props) {
   return (
     <div className='patientPage'>
-      <h3> Hello, {name}!</h3><br />
+      <h5>Hello, {name}!</h5><br />
 
       {/* Render a list group of actions for the patient */}
       <ListGroup >
-        <ListGroup.Item action href="/showTip" className='listColor'>
-          Daily Tip  <FontAwesomeIcon icon={faLightbulb} color='orange' size={'1x'} />
+        <ListGroup.Item action href="/showTip" className='patientListColor'>
+          Daily Tip  <FontAwesomeIcon icon={faLightbulb} color='yellow' size={'2x'} />
         </ListGroup.Item>
 
-        <ListGroup.Item action href="/addVitalSigns" className='listColor'>
-          Add Daily Information <FontAwesomeIcon icon={faPlusSquare} size={'1x'} />
+        <ListGroup.Item action href="/addVitalSigns" className='patientListColor'>
+          Add Vital Information <FontAwesomeIcon icon={faPlusSquare} color='grey' size={'2x'} />
         </ListGroup.Item>
 
-        <ListGroup.Item action href="/checklist" className='listColor'>
-          Checklist for common signs and symptoms <FontAwesomeIcon icon={faInfoCircle} size={'1x'} color='green' />
+        <ListGroup.Item action href="/checklist" className='patientListColor'>
+          Checklist for Common Symptoms <FontAwesomeIcon icon={faInfoCircle} size={'2x'} color='green' />
         </ListGroup.Item>
 
-        <ListGroup.Item action href="/emergencyAlert" className='listColor'>
-          Send an Emergency Alert  <FontAwesomeIcon icon={faExclamationTriangle} color='red' />
+        <ListGroup.Item action href="/emergencyAlert" className='patientListColor'>
+          Send an Emergency Alert  <FontAwesomeIcon icon={faExclamationTriangle} color='red' size={'2x'} />
         </ListGroup.Item>
 
-        <ListGroup.Item action href="/motivationalVideos" className='listColor'>
-          Motivational Videos <FontAwesomeIcon icon={faVideoCamera} />
-        </ListGroup.Item>
-
-        <ListGroup.Item action href="/game" className='listColor'>
-          Play Game <FontAwesomeIcon icon={faGamepad} />
+        <ListGroup.Item action href="https://mankeman.github.io/Games/FitnessGame/index.html" className='patientListColor'>
+          Fitness Game <FontAwesomeIcon icon={faGamepad} size={'2x'} color='black'/>
         </ListGroup.Item>
       </ListGroup>
     </div>

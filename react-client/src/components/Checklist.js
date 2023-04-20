@@ -15,10 +15,10 @@ function Checklist() {
     <div>              
       <div>
         {/* Heading */}
-        <center><h3>Check your signs and symptoms</h3></center><br/><br/>
+        <center><h5>Check your signs and symptoms</h5></center><br/><br/>
         
         {/* Checklist Form */}
-        <Form method='get' action='/run' className='form'>
+        <Form method='get' action='/run' className='patientForm'>
           {/* Checkboxes */}
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Cholesterol" />
