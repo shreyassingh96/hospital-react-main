@@ -40,10 +40,16 @@
   padding-left: 200px;
   padding-right: 200px;
 }
+.tranback {
+  background: #bbe4f096;
+  border-radius: 60px;
+  padding: 1px;
+  margin: 50px;
+}
 h1,h2,h3
   {
     align-items: center;
-    color: #350ff2;
+    color: #ffffff;
     font-weight: 500;
     font-display: swap;
   }
@@ -55,6 +61,7 @@ h1,h2,h3
     font-display: swap;
   }
 
+
 .patientPage{
   padding-top: 50px;
   padding-left: 350px;
@@ -63,10 +70,31 @@ h1,h2,h3
 }
 
 .nursePage{
-  padding-top: 50px;
-  padding-left: 350px;
-    padding-right: 350px;
-   
+  margin: auto;
+  height: 100vh;
+  padding: 100px;
+  background: #fff url(https://i.ytimg.com/vi/HzC42N1K4d4/maxresdefault.jpg) center center/cover no-repeat fixed;
+}
+
+.patientInfo{
+  margin: auto;
+  height: 100vh;
+  padding: 100px;
+  background: #fff url(https://www.shutterstock.com/shutterstock/videos/1096214795/thumb/3.jpg?ip=x480) center center/cover no-repeat fixed;
+}
+
+.addVitalNur{
+  margin: auto;
+  height: auto;
+  padding: 100px;
+  background: #fff url(https://www.caryobgyn.com/wp-content/uploads/2022/03/vital-signs-hero.jpg) center center/cover no-repeat fixed;
+}
+
+.motive{
+  margin: auto;
+  height: auto;
+  padding: 100px;
+  background: #fff url(https://t3.ftcdn.net/jpg/03/04/40/12/360_F_304401286_rW908F2bq2VWgiG3YNMU4O8UKaxm652n.jpg) center center/cover no-repeat fixed;
 }
 
 .listColor{
