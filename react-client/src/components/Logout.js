@@ -9,7 +9,8 @@ const UserLogout = () => {
   // Removing user information from local storage
   localStorage.removeItem('userCategory');
   localStorage.removeItem('name');
-  
+  localStorage.removeItem('lastName');
+  localStorage.clear();
   // Redirecting user to login page
   history.push('/login');
   

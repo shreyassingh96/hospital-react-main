@@ -17,10 +17,12 @@ function Home(props) {
 
   // Render Home component
   return (
-    <div>
+   
+    <div className="container"> <Jumbotron className='form'>
       <br />
       <section id="gallery">
         <div className="container-fluid">
+        
           <div className="row">
             {/* First row of videos */}
             <div className="col-sm-3">
@@ -80,14 +82,17 @@ function Home(props) {
           </div>
         </div>
       </section>
-
+      <center>
       <div className='buttonBack'>
         <Button onClick={onBack} variant="primary" type="submit">
           Back
-        </Button>
+          </Button>
 
       </div>
+      </center>
+      </Jumbotron>
     </div>
+    
   );
 
 }

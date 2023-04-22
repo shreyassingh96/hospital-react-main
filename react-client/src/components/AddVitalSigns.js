@@ -6,9 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { withRouter, useHistory } from 'react-router-dom';
 import './UI.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTemperature1, faHeartbeat, faDroplet, faSnowflake, faMale } from '@fortawesome/free-solid-svg-icons';
-
 // Define GraphQL mutation for creating vital signs
 export const Create_Vital_Sign = gql`
   mutation CreateVitalSign(
@@ -38,6 +35,7 @@ const AddVitalSigns = () => {
   // Use useMutation hook to define createVitalSign function and get data, loading, and error states
   const [createVitalSign, { data, loading, error }] = useMutation(Create_Vital_Sign);
 
+  // const [showSuccess, setShowSuccess] = useState(false);
   // If mutation is loading, display "Submitting..."
   if (loading) return 'Submitting...';
   // If there is an error, display error message
@@ -52,13 +50,8 @@ const AddVitalSigns = () => {
 
   return (
     <div className='container'>
-      <br />
-      <br />
-      <center>
-        <h5>Vital Signs Form</h5>
-      </center>
-
       <Jumbotron className='form'>
+      <h2>Add Your Vital Signs</h2>
         <Form
           onSubmit={e => {
             e.preventDefault();
@@ -78,39 +71,41 @@ const AddVitalSigns = () => {
             bloodPressure.value = '';
             respiratoryRate.value = '';
             weight.value = '';
+              // Show success alert
+  window.alert("Vital signs added successfully!");
             // Redirect to patient page
             history.push('/patient');
           }}
         >
           <Form.Group>
             <Form.Label>Body Temperature</Form.Label>
-            <Form.Control type="text" name="bodyTemperature" id="bodyTemperature" placeholder="Enter body temperature" ref={node => { bodyTemperature = node; }} />
+            <Form.Control type="number" name="bodyTemperature" id="bodyTemperature" placeholder="Enter body temperature" ref={node => { bodyTemperature = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Heart Rate <FontAwesomeIcon size={'1x'} icon={faHeartbeat} /></Form.Label>
-            <Form.Control type="text" name="heartRate" id="heartRate" placeholder="Enter heart rate" ref={node => { heartRate = node; }} />
+            <Form.Label>Heart Rate</Form.Label>
+            <Form.Control type="number" name="heartRate" id="heartRate" placeholder="Enter heart rate" ref={node => { heartRate = node; }} />
           </Form.Group>
           
           <Form.Group>
-            <Form.Label>Blood Pressure <FontAwesomeIcon size={'1x'} /></Form.Label>
-            <Form.Control type="text" name="bloodPressure" id="bloodPressure" placeholder="Enter blood pressure" ref={node => { bloodPressure = node; }} />
+            <Form.Label>Blood Pressure</Form.Label>
+            <Form.Control type="number" name="bloodPressure" id="bloodPressure" placeholder="Enter blood pressure" ref={node => { bloodPressure = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Respiratory Rate <FontAwesomeIcon size={'1x'} /></Form.Label>
-            <Form.Control type="text" name="respiratoryRate" id="respiratoryRate" placeholder="Enter respiratory rate" ref={node => { respiratoryRate = node; }} />
+            <Form.Label>Respiratory Rate</Form.Label>
+            <Form.Control type="number" name="respiratoryRate" id="respiratoryRate" placeholder="Enter respiratory rate" ref={node => { respiratoryRate = node; }} />
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Weight <FontAwesomeIcon size={'1x'} /></Form.Label>
-            <Form.Control type="text" name="weight" id="weight" placeholder="Enter weight" ref={node => { weight = node; }} />
+            <Form.Label>Weight</Form.Label>
+            <Form.Control type="number" name="weight" id="weight" placeholder="Enter weight" ref={node => { weight = node; }} />
           </Form.Group>
 
           <div className='button-container' style={{textAlign: 'center'}}>
             <div className='button'>
               <Button className='buttonSave' variant="primary" type="submit">
-                Save
+                Update
               </Button>
             </div>
             <div className='button'>

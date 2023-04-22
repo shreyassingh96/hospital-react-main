@@ -45,7 +45,11 @@ function Game() {
 
   // JSX code for the Game component
   return (
-    <React.Fragment>
+    <React.Fragment >
+      <Jumbotron className='form'>
+    
+        <h2>Tic-Tac To Your Mind Fresh and Active</h2>
+      
       <Layout boxes={layout} onClick={handleClick} />
       <div style={styles}>
         <p style={pStyle}>
@@ -54,12 +58,13 @@ function Game() {
         </p>
 
       </div>
-      <div className='buttonBack'>
+      <div className='buttonBack'><center>
         <Button className='buttonSave' onClick={onBack} variant="primary" type="submit">
           Back
         </Button>
 
-      </div>
+        </center></div>
+      </Jumbotron>
     </React.Fragment>
   )
 }

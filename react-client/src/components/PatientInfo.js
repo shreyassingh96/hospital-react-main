@@ -1,8 +1,9 @@
-// Import necessary modules
 import React, { useEffect } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import { withRouter, useHistory } from 'react-router-dom';
 import { Table } from 'antd';
+import Button from 'react-bootstrap/Button';
 
 // Define GraphQL query to fetch vital signs data
 const GET_VITAL_SIGNS = gql`
@@ -23,6 +24,7 @@ const GET_VITAL_SIGNS = gql`
 const ShowVitalSigns = () => {
   // Fetch data from server using useQuery hook
   const { loading, error, data, refetch } = useQuery(GET_VITAL_SIGNS);
+  const history = useHistory();
 
   // Define columns for Ant Design table
   const columns = [
@@ -51,7 +53,13 @@ const ShowVitalSigns = () => {
       dataIndex: "weight",
       key: "weight"
     }
-  ]
+  ];
+
+  // Function to go back to previous page
+  const onBack = e => {
+    e.preventDefault();
+    history.push('/nurse');
+  };
 
   // Call refetch function on component mount
   useEffect(() => {
@@ -66,10 +74,18 @@ const ShowVitalSigns = () => {
 
   // Render table to display vital signs information
   return (
-    <div>
-      <br /><br />
-      <center><h4>{data.vitalSigns.patient} Patient Vital Signs Information List</h4></center><br /><br />
-      <Table className='tip' columns={columns} dataSource={data.vitalSigns} pagination={false} />
+    <div className="container">
+      <Jumbotron className='form'>
+        <h2>{data.vitalSigns.patient} Patient Vital Signs Information List</h2>
+        <Table className='tip' columns={columns} dataSource={data.vitalSigns} pagination={false} />
+        <center>
+          <div className='buttonBack'><br></br>
+            <Button onClick={onBack} variant="primary" type="submit">
+              Back
+            </Button>
+          </div>
+        </center>
+      </Jumbotron>
     </div>
   );
 }
