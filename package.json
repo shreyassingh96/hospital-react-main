@@ -1,11 +1,11 @@
 {
-  "name": "express-react-example",
+  "name": "express-react",
   "version": "0.0.0",
-  "description": "Express react Example",
+  "description": "Express react",
   "main": "server.js",
   "author": {
-    "name": "inika",
-    "email": ""
+    "name": "shreyas",
+    "email": "shreyassingh96@gmail.com"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

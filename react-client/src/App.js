@@ -1,6 +1,6 @@
 // Import necessary packages
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Jumbotron from 'react-bootstrap/Jumbotron';
@@ -31,20 +31,28 @@ function App() {
   const userCategory = localStorage.getItem('userCategory');
 
   return (
-    <Router>
+    <Router >
       {/* Navbar component */}
-      <Navbar className='navbar navbar-dark bg-dark'>
+      <Navbar bg="dark" variant="dark" expand="sm" className="flex-row align-items-start">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/signUp">Sign Up</Nav.Link>
-            <Nav.Link href="/logout">Logout</Nav.Link>
+          <Nav className="flex-row">
+            <Nav.Link as={Link} to="/home">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              Login
+            </Nav.Link>
+            <Nav.Link as={Link} to="/signUp">
+              Sign Up
+            </Nav.Link>
+            <Nav.Link as={Link} to="/logout">
+              Logout
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar/>
+
 
       <div>
         {/* Route to Home component */}

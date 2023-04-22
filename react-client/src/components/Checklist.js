@@ -12,10 +12,11 @@ function Checklist() {
 
   // Rendering the JSX components
   return (
-    <div>              
+    <div className="container">   
+      <Jumbotron className='form'>
       <div>
         {/* Heading */}
-        <center><h3>Check your signs and symptoms</h3></center><br/><br/>
+        <h2>Check your signs and symptoms</h2>
         
         {/* Checklist Form */}
         <Form method='get' action='/run' className='form'>
@@ -49,12 +50,14 @@ function Checklist() {
             <Button className='buttonSave' variant="primary" type="submit">
               Submit
             </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button className='buttonCancel' variant="danger" type="submit" >
-              Cancel
-            </Button>
+            <Button className='buttonCancel' variant="danger">
+  <a href="/patient" style={{ color: 'inherit', textDecoration: 'none' }}>
+    Cancel
+  </a>
+</Button>
           </div>
         </Form>
-      </div>
+      </div></Jumbotron>      
     </div>
   );
 }

@@ -41,8 +41,9 @@ function CreateTip(props) {
 
   // Render the component
   return (
-    <div>
-      <h2><center> Motivational Tip</center></h2>
+    <div className="container">
+      <Jumbotron className='form'>
+      <h2>Send Motivational Tip</h2>
 
       <Form className='form' onSubmit={e => {
         // Call the mutation to create a motivational tip
@@ -62,7 +63,7 @@ function CreateTip(props) {
         history.push('/nurse');
       }}>
         <Form.Group>
-          <center><Form.Label> Tip of the Day <FontAwesomeIcon icon={faLightbulb} size={'1x'} color='orange' /></Form.Label></center><br />
+          <Form.Label> Tip of the Day for the Patient</Form.Label><br />
           <Form.Control type="text" name="message" id="message" placeholder="Enter message" ref={node => { message = node; }} /><br />
         </Form.Group>
 
@@ -74,7 +75,7 @@ function CreateTip(props) {
             Cancel
           </Button>
         </div>
-      </Form>
+      </Form></Jumbotron>
     </div>
   );
 }

@@ -47,12 +47,13 @@ function EmergencyAlert() {
             // Clear the input field
             alertMessage.value = '';
 
+            window.alert("Message sent successfully!");
             // Redirect to the Patient page
             history.push(`/patient`);
           }}
         >
           <Form.Group>
-            <Form.Label>Enter the Alert Message</Form.Label>
+            <Form.Label><h2>Write Alert Message</h2></Form.Label>
             <Form.Control
               as='textarea'
               rows={3}
@@ -83,7 +84,7 @@ function EmergencyAlert() {
             Send
           </Button>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <Button variant='primary' type='submit' onClick={handleCancel}>
+          <Button variant='danger' type='submit' onClick={handleCancel}>
             Cancel
           </Button>
         </Form>

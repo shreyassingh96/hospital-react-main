@@ -25,6 +25,13 @@ export const SIGN_UP = gql`
       _id
     }
   }
+`
+;
+
+export const USER_EXISTS = gql`
+  query ($email: String!) {
+    userExists(email: $email)
+  }
 `;
 
 // Define Register component
@@ -54,11 +61,16 @@ const Register = () => {
               email: email.value, password: password.value, firstName: firstName.value, lastName: lastName.value,
               userCategory: user, phoneNumber: phoneNumber.value,
             },
-          });
+          }).then(result => {
+            if(result && result.data & result.data.signUp && result.data.signUp._id){
+              alert('Registration successfull');
+            }
+          })
 
           // Set user category and name in local storage
           localStorage.setItem('userCategory', user);
           localStorage.setItem('name', firstName.value);
+          localStorage.setItem('lastName',lastName.value);
 
           // Clear form inputs
           email.value = '';
